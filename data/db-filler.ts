@@ -4,18 +4,12 @@ import dbConnector from "../database/connection";
 import faker from "faker";
 
 import { ThingSchema } from "../src/models/thing-schema";
+import { ProtoThingDoc } from "../src/interfaces/proto-thing-doc";
 import { ThingInterface } from "../src/interfaces/thing-interface";
 import { cleanUpThings } from "../database/helpers";
 
 // Number of MongoDB documents of type "Thing" is arbitrarily capped at 10
 const NUM_OF_DOCS = 10;
-
-// ProtoThingDocument -> what will become a Mongoose Thing
-interface ProtoThingDoc {
-  prop1: string;
-  prop2: string;
-  prop3: string;
-}
 
 function createData() {
   const newProtoThings: ProtoThingDoc[] = [];
