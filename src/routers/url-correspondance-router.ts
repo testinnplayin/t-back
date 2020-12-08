@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ router.get("/:shortenedURL", correspondanceController.findOne);
 
 router.post("/", correspondanceController.findOrUpdateOne);
 
-router.use((err: Error, _req: Request, res: Response) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.message);
   return res.status(500).json({
     status: err,
