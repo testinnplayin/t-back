@@ -4,8 +4,6 @@ const app = express();
 
 import cors, { CorsOptions } from "cors";
 
-import { runScripts } from "./data/db-filler";
-
 const whitelist = ["http://localhost:3000"];
 const corsOptions: CorsOptions = {
   origin: whitelist[0],
@@ -18,11 +16,13 @@ import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
 
-import thingRouter from "./src/routers/thing-router";
+import urlCorrespondanceController from "./src/routers/url-correspondance-router";
 
 app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use("/things", thingRouter);
+app.use("/urls", urlCorrespondanceController);
 
 app.use("*", (_req: Request, res: Response) => {
   return res.status(404).json({
@@ -33,5 +33,4 @@ app.use("*", (_req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`--- Server listening on port ${PORT} ----`);
-  runScripts();
 });
