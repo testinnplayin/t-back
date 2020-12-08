@@ -41,7 +41,8 @@ export default {
                 // build a small hash for the shortened URL here
                 const randomString = randomBytes(8).toString("hex");
                 const newCorrespondance = Object.assign({}, reqBody);
-                newCorrespondance.shortenedURL = `ex.co/${randomString}`;
+                newCorrespondance.shortenedURL = randomString;
+
                 correspondance = await Correspondance.create(reqBody);
             }
             return res
