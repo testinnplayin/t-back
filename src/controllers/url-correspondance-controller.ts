@@ -43,6 +43,7 @@ export default {
     res: Response,
     next: NextFunction
   ): Promise<Response | undefined> {
+      console.log('IAMHERE');
     const reqBody = req.body;
 
     try {
@@ -53,7 +54,7 @@ export default {
         URLCorrespondanceSchema
       );
       let correspondance = await Correspondance.findOne({
-        shortenedURL: reqBody.originalURL,
+        originalURL: reqBody.originalURL,
       });
 
       if (!correspondance) {

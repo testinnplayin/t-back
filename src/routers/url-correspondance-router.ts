@@ -6,10 +6,10 @@ import correspondanceController from "../controllers/url-correspondance-controll
 
 router.get("/:shortenedURL", correspondanceController.findOne);
 
-router.put("/", correspondanceController.findOrUpdateOne);
+router.post("/", correspondanceController.findOrUpdateOne);
 
 router.use((err: Error, _req: Request, res: Response) => {
-  console.error(err);
+  console.error(err.message);
   return res.status(500).json({
     status: err,
     message: err.message,
