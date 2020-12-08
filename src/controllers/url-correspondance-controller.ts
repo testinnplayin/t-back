@@ -43,7 +43,6 @@ export default {
     res: Response,
     next: NextFunction
   ): Promise<Response | undefined> {
-      console.log('IAMHERE');
     const reqBody = req.body;
 
     try {
